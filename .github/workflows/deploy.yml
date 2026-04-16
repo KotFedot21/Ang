@@ -15,11 +15,11 @@ jobs:
         with:
           node-version: '24.x'
       - name: Install
-        run: cd ./course && npm install
+        run: cd ./blog_app && npm install
       - name: Build
-        run: cd ./course && npm run build
+        run: cd ./blog_app && npm run build
       - name: Deploy
-        run: cd ./course && npm run deploy
+        run: cd ./blog_app && npm run deploy
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
