@@ -21,16 +21,11 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "baseHref": "/blog_app/"
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webapp"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webapp"],
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
@@ -70,6 +65,13 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "name": "Anna",
+            "email": "senior.kontstantinov@yandex.ru"
+          }
         }
       }
     }
