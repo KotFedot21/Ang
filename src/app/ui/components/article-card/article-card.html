@@ -1,0 +1,23 @@
+<!-- src/app/ui/components/article-card/article-card.html -->
+<article class="article-card" [class.featured]="isFeatured" (click)="onView()">
+    <div class="article-card-image">
+        <img [src]="article.imageUrl || 'assets/images/ea2d1b6afe5408fad4c7e9efc468ec520d055669.png'" 
+             [alt]="article.title">
+    </div>
+    <div class="article-card-content">
+        <h3 [class.featured-title]="isFeatured">{{ article.title }}</h3>
+        <p class="article-date">{{ article.date }}</p>
+        <p class="article-description" [class.featured-description]="isFeatured">
+            {{ article.content | slice:0:(isFeatured ? 300 : 150) }}
+            {{ article.content.length > (isFeatured ? 300 : 150) ? '...' : '' }}
+        </p>
+    </div>
+    <button class="delete-post-btn" 
+            (click)="onDelete($event)" 
+            aria-label="Удалить статью" 
+            title="Удалить статью">
+        <svg class="delete-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </button>
+</article>

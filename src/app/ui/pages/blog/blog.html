@@ -1,0 +1,101 @@
+<!-- src/app/ui/pages/blog/blog.html -->
+<section class="my_blog">
+    <!-- Боковое меню -->
+    <div class="compact-sidebar">
+        <button class="sidebar-btn" title="Создать новую статью" id="createPostBtn">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+        </button>
+        <button class="sidebar-btn" title="Показать статистику" id="statsBtn">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M21 16V20H3V16" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M7 10L10 13L17 6" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M3 12L7 8L12 13L21 4" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Заголовок -->
+    <div class="my_blog_title">
+        <div class="my_blog_title_text">
+            <h1>Мой блог</h1>
+            <p>Небольшой рассказ о себе.....</p>
+        </div>
+        <img src="assets/images/5e5a2152b571164612dec5e7f9fa296477087d31.png" alt="Blog">
+    </div>
+
+    <!-- Кнопка создания статьи -->
+    <div class="create-post-btn-container">
+        <button class="create-post-btn" (click)="toggleForm()">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            {{ showForm ? 'Отмена' : 'Создать статью' }}
+        </button>
+    </div>
+
+    <!-- Форма добавления статьи -->
+    <div class="post-form" *ngIf="showForm">
+        <h3>Создание новой статьи</h3>
+        <div class="form-group">
+            <label for="title">Заголовок *</label>
+            <input type="text" id="title" [(ngModel)]="newArticle.title" placeholder="Введите заголовок статьи">
+        </div>
+        <div class="form-group">
+            <label for="content">Текст *</label>
+            <textarea id="content" [(ngModel)]="newArticle.content" rows="6" placeholder="Введите текст статьи..."></textarea>
+        </div>
+        <div class="form-buttons">
+            <button class="btn-save" (click)="addArticle()">Сохранить</button>
+            <button class="btn-cancel" (click)="toggleForm()">Отмена</button>
+        </div>
+    </div>
+
+    <!-- ОТОБРАЖЕНИЕ СТАТЕЙ ЧЕРЕЗ *ngFor -->
+    <div class="articles-grid" *ngIf="hasArticles; else emptyState">
+        
+        <!-- ПЕРВАЯ СТАТЬЯ (увеличенная) -->
+        <div class="featured-article-wrapper" *ngIf="displayedArticles[0]">
+            <app-article-card 
+                [article]="displayedArticles[0]"
+                [isFeatured]="true"
+                (deleteArticle)="deleteArticle($event)"
+                (viewArticle)="viewArticle($event)">
+            </app-article-card>
+        </div>
+
+        <!-- ОСТАЛЬНЫЕ СТАТЬИ (сетка 3 колонки) -->
+        <div class="articles-grid-small">
+            <app-article-card 
+                *ngFor="let article of displayedArticles.slice(1)"
+                [article]="article"
+                [isFeatured]="false"
+                (deleteArticle)="deleteArticle($event)"
+                (viewArticle)="viewArticle($event)">
+            </app-article-card>
+        </div>
+        
+    </div>
+
+    <!-- Пустое состояние -->
+    <ng-template #emptyState>
+        <div class="empty-state">
+            <div class="empty-state-content">
+                <svg class="empty-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 4H20V20H4V4Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 8L16 16M16 8L8 16" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <h3>Статей пока нет</h3>
+                <p>Нажмите кнопку "Создать статью" чтобы добавить первую статью</p>
+            </div>
+        </div>
+    </ng-template>
+
+    <!-- Кнопка "Далее" -->
+    <div class="load-more-container" *ngIf="hasMoreArticles">
+        <button class="load-more-btn" (click)="loadMore()">Далее</button>
+    </div>
+</section>

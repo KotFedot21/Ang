@@ -1,0 +1,591 @@
+/* You can add global styles to this file, and also import other style files */
+// ========== ПЕРЕМЕННЫЕ ==========
+:root {
+    /* Цвета */
+    --color-primary: #323747;
+    --color-secondary: #68686A;
+    --color-accent: #61C15C;
+    --color-accent-dark: #28a745;
+    --color-orange: #DB5E31;
+    --color-white: #fff;
+    --color-black: #1a1a1a;
+    --color-dark: #333;
+    --color-gray: #666;
+    --color-border: #BDC1CA;
+    --color-bg-beige: #FEF3EF;
+    --color-bg-green-light: #F4FBF4;
+    
+    /* Типографика */
+    --font-main: 'Inter', sans-serif;
+    
+    /* Размеры шрифтов */
+    --text-xs: 14px;
+    --text-sm: 15px;
+    --text-base: 16px;
+    --text-md: 18px;
+    --text-lg: 20px;
+    --text-xl: 22px;
+    --text-2xl: 24px;
+    --text-3xl: 28px;
+    --text-4xl: 32px;
+    --text-5xl: 52px;
+    
+    /* Отступы */
+    --spacing-xs: 8px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 25px;
+    --spacing-2xl: 30px;
+    --spacing-3xl: 40px;
+    --spacing-4xl: 60px;
+    
+    /* Радиусы */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    
+    /* Тени */
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.1);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+    
+    /* Контейнеры */
+    --container-max: 1200px;
+    --container-padding: 20px;
+}
+
+// ========== ПОДКЛЮЧЕНИЕ ШРИФТОВ ==========
+@font-face {
+    font-family: 'Inter';
+    src: url('/assets/fonts/inter-normal-latin.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/assets/fonts/inter-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+// ========== СБРОС И БАЗОВЫЕ СТИЛИ ==========
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-primary);
+    background-color: var(--color-white);
+    line-height: 1.5;
+}
+
+// ========== ОБЩИЕ КОНТЕЙНЕРЫ ==========
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+// ========== КНОПКИ ==========
+.centr_button {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    width: 200px;
+    height: 54px;
+    margin: 40px auto;
+    background: var(--color-white);
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    font-size: var(--text-md);
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+
+    &:hover {
+        background: var(--color-accent-dark);
+        color: var(--color-white);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+    }
+}
+
+// ========== САЙДБАР ==========
+.compact-sidebar {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+    border-radius: 40px 0 0 40px;
+}
+
+.sidebar-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--color-accent-dark);
+
+    &:hover {
+        background: rgba(40, 167, 69, 0.1);
+        transform: scale(1.1);
+    }
+}
+
+.btn-icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    fill: none;
+}
+
+// ========== ДИАЛОГИ ==========
+.post-dialog,
+.stats-dialog,
+.confirm-dialog {
+    border: none;
+    border-radius: 24px;
+    padding: 0;
+    width: 90%;
+    max-width: 550px;
+    margin: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+    }
+}
+
+.confirm-dialog {
+    max-width: 400px;
+}
+
+.dialog-container,
+.confirm-dialog-container {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.dialog-header,
+.confirm-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.dialog-title,
+.confirm-dialog-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.confirm-dialog-title {
+    font-size: 20px;
+}
+
+.dialog-close {
+    background: transparent;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #666;
+
+    &:hover {
+        background: #f5f5f5;
+        transform: scale(1.05);
+        color: #333;
+    }
+}
+
+.dialog-content,
+.confirm-dialog-content {
+    padding: 28px;
+    background: white;
+}
+
+.confirm-dialog-content {
+    padding: 16px 28px;
+
+    p {
+        font-size: 15px;
+        color: #666;
+        line-height: 1.5;
+        margin: 0;
+    }
+}
+
+.confirm-dialog-buttons {
+    display: flex;
+    gap: 12px;
+    padding: 0 28px 24px 28px;
+}
+
+.confirm-btn {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.confirm-yes {
+    background: #dc3545;
+    color: white;
+
+    &:hover {
+        background: #c82333;
+        transform: translateY(-1px);
+    }
+}
+
+.confirm-no {
+    background: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #e9ecef;
+
+    &:hover {
+        background: #e9ecef;
+    }
+}
+
+// ========== ФОРМА ==========
+.article-form {
+    margin: 0;
+    padding: 0;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #dc3545;
+    margin-left: 4px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a2e;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+        border-color: var(--color-accent);
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(97, 193, 92, 0.1);
+    }
+
+    &.error {
+        border-color: #dc3545 !important;
+        background: #fff5f5 !important;
+    }
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.error-message {
+    display: none;
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #fff5f5;
+    border-radius: 6px;
+
+    &.visible {
+        display: block;
+    }
+}
+
+.form-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save {
+    background: var(--color-accent);
+    color: white;
+
+    &:hover {
+        background: var(--color-accent-dark);
+        transform: translateY(-2px);
+    }
+}
+
+.btn-cancel {
+    background: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #e9ecef;
+
+    &:hover {
+        background: #e9ecef;
+    }
+}
+
+// ========== СТАТИСТИКА ==========
+.stats-cards {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 180px;
+    border-radius: 20px;
+    padding: 28px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f6;
+    background: white;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    color: #1a1a2e;
+}
+
+// ========== ЛОАДЕР ==========
+.articles-grid.loading {
+    position: relative;
+    min-height: 300px;
+
+    .article-card {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.loader-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--color-accent-dark);
+    border-radius: 50%;
+    animation: loaderDot 1.4s ease-in-out infinite;
+
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+}
+
+@keyframes loaderDot {
+    0%, 60%, 100% {
+        transform: scale(0.6);
+        opacity: 0.5;
+    }
+    30% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+// ========== УВЕДОМЛЕНИЯ ==========
+.notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    z-index: 2000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    animation: notificationSlideIn 0.3s ease forwards;
+
+    &.success {
+        background: var(--color-accent-dark);
+        color: white;
+    }
+    &.error {
+        background: #dc3545;
+        color: white;
+    }
+    &.info {
+        background: #17a2b8;
+        color: white;
+    }
+}
+
+@keyframes notificationSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.notification.hide {
+    animation: notificationSlideOut 0.3s ease forwards;
+}
+
+@keyframes notificationSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+        visibility: hidden;
+    }
+}
+
+// ========== DISABLE СТИЛИ ==========
+button:disabled,
+.load-more-btn:disabled,
+.btn:disabled,
+.sidebar-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+input:disabled,
+textarea:disabled,
+.form-input:disabled,
+.form-textarea:disabled {
+    background: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
+    border-color: #ddd;
+}
+
+// ========== АДАПТИВНОСТЬ ==========
+@media screen and (max-width: 768px) {
+    .notification {
+        white-space: normal;
+        max-width: 90%;
+        font-size: 13px;
+        padding: 10px 20px;
+        bottom: 20px;
+    }
+    
+    .compact-sidebar {
+        padding: 15px 10px;
+    }
+    
+    .sidebar-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .btn-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .submit-btn {
+        width: 100%;
+    }
+}

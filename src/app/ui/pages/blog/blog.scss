@@ -1,0 +1,392 @@
+// src/app/ui/pages/blog/blog.scss
+
+// Стили для первой увеличенной статьи
+// .featured-article {
+//     display: flex;
+//     gap: 40px;
+//     background: white;
+//     border-radius: 16px;
+//     overflow: hidden;
+//     margin-bottom: 40px;
+//     padding: 30px;
+//     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+//     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+//     &:hover {
+//         transform: translateY(-5px);
+//         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+//     }
+// }
+
+// .featured-article-image {
+//     flex: 1;
+//     max-width: 50%;
+//     overflow: hidden;
+//     border-radius: 12px;
+
+//     img {
+//         width: 100%;
+//         height: 100%;
+//         max-height: 400px;
+//         object-fit: cover;
+//         transition: transform 0.3s ease;
+        
+//         &:hover {
+//             transform: scale(1.02);
+//         }
+//     }
+// }
+
+// .featured-article-content {
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     padding: 20px;
+
+//     h2 {
+//         font-size: 32px;
+//         font-weight: 700;
+//         color: #333;
+//         margin-bottom: 15px;
+//         line-height: 1.3;
+//     }
+
+//     .article-date {
+//         font-size: 14px;
+//         color: #28a745;
+//         font-weight: 500;
+//         margin-bottom: 20px;
+//         padding-bottom: 15px;
+//         border-bottom: 1px solid #eee;
+//     }
+
+//     .article-description {
+//         font-size: 16px;
+//         color: #666;
+//         line-height: 1.6;
+//         margin-bottom: 25px;
+//     }
+
+//     .delete-btn {
+//         align-self: flex-start;
+//         padding: 10px 24px;
+//         background: #dc3545;
+//         color: white;
+//         border: none;
+//         border-radius: 8px;
+//         cursor: pointer;
+//         font-size: 14px;
+//         font-weight: 500;
+//         transition: all 0.3s ease;
+
+//         &:hover {
+//             background: #c82333;
+//             transform: translateY(-2px);
+//         }
+//     }
+// }
+
+// Сетка для остальных статей (3 колонки)
+.articles-grid-small {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// Остальные стили (без изменений)
+.my_blog {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+}
+
+
+.my_blog_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 55px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.my_blog_title_text {
+    flex: 1;
+
+    h1 {
+        font-size: 52px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    p {
+        font-size: 29px;
+        color: #666;
+        line-height: 1.6;
+    }
+}
+
+.my_blog_title img {
+    flex: 0 0 200px;
+    max-width: 200px;
+    border-radius: 8px;
+
+    @media (max-width: 768px) {
+        max-width: 150px;
+    }
+}
+
+.create-post-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.create-post-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: #218838;
+        transform: translateY(-2px);
+    }
+}
+
+.post-form {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+
+    h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+
+            &:focus {
+                outline: none;
+                border-color: #28a745;
+            }
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    }
+
+    .form-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+
+        button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save {
+            background: #28a745;
+            color: white;
+
+            &:hover {
+                background: #218838;
+            }
+        }
+
+        .btn-cancel {
+            background: #f5f5f5;
+            color: #666;
+
+            &:hover {
+                background: #e0e0e0;
+            }
+        }
+    }
+}
+
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+}
+
+.load-more-btn {
+    width: 200px;
+    height: 54px;
+    background: white;
+    color: #28a745;
+    border: 2px solid #28a745;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+
+    &:hover {
+        background: #28a745;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state-content {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.empty-state p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+// Стили для сайдбара
+.compact-sidebar {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.sidebar-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #28a745;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        background: #28a745;
+        color: white;
+        transform: scale(1.1);
+    }
+}
+
+.btn-icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    fill: none;
+}
+
+@media (max-width: 768px) {
+    .compact-sidebar {
+        right: 10px;
+        gap: 10px;
+    }
+    
+    .sidebar-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .btn-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .featured-article {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .featured-article-image {
+        max-width: 100%;
+    }
+
+    .featured-article-content h2 {
+        font-size: 24px;
+    }
+}
+.featured-article-wrapper {
+    margin-bottom: 40px;
+}

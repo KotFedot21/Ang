@@ -1,0 +1,41 @@
+// src/app/ui/components/header/header.scss
+.header {
+    width: 100%;
+    min-width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 15px 10%;
+    }
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: var(--color-secondary, #68686A);
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 8px 0;
+    cursor: pointer;
+
+    &:hover,
+    &.active {
+        color: var(--color-accent, #61C15C);
+        font-weight: 700;
+    }
+}
